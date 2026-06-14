@@ -27,6 +27,7 @@ export default function ThreeCanvas({
   const controlsRef = useRef(null);
   const blocksGroupRef = useRef(null);
   const hoverOutlineRef = useRef(null);
+  const shadesGroupRef = useRef(null);
   
   // Map of symbol -> Mesh to find meshes quickly for highlighting/animation
   const meshesMapRef = useRef(new Map());
@@ -221,6 +222,10 @@ export default function ThreeCanvas({
     scene.add(blocksGroup);
     blocksGroupRef.current = blocksGroup;
 
+    const shadesGroup = new THREE.Group();
+    scene.add(shadesGroup);
+    shadesGroupRef.current = shadesGroup;
+
     // 8. Add Hover Outline Mesh
     const outlineGeo = new THREE.BoxGeometry(1.02, 1.02, 1.02);
     const outlineMat = new THREE.MeshBasicMaterial({
@@ -410,6 +415,12 @@ export default function ThreeCanvas({
       outlineGeo.dispose();
       outlineMat.dispose();
       renderer.dispose();
+
+      scene.remove(shadesGroup);
+      shadesGroup.children.forEach(child => {
+        child.geometry.dispose();
+        child.material.dispose();
+      });
     };
   }, [onSelectStock, layoutShape]);
 
@@ -434,6 +445,21 @@ export default function ThreeCanvas({
       blocksGroup.remove(child);
     }
     meshesMapRef.current.clear();
+
+    // Remove old shades
+    const shadesGroup = shadesGroupRef.current;
+    if (shadesGroup) {
+      while (shadesGroup.children.length > 0) {
+        const child = shadesGroup.children[0];
+        child.geometry.dispose();
+        if (Array.isArray(child.material)) {
+          child.material.forEach(mat => mat.dispose());
+        } else {
+          child.material.dispose();
+        }
+        shadesGroup.remove(child);
+      }
+    }
 
     const sectorKeys = Object.keys(SECTORS);
 
@@ -734,6 +760,80 @@ export default function ThreeCanvas({
       layoutColumn(inlandStocks, 'inland');
       layoutColumn(waterfrontStocks, 'waterfront');
     });
+
+    // Generate Sector Shading Planes
+    if (shadesGroup) {
+      sectorKeys.forEach((sectorKey) => {
+        const placement = sectorPlacements[sectorKey];
+        if (!placement) return;
+        
+        const sectorColorConfig = SECTORS[sectorKey];
+        if (!sectorColorConfig) return;
+        
+        const sectorHue = sectorColorConfig.hue;
+        
+        let opacity = 0.24;
+        if (selectedSector && selectedSector !== sectorKey) {
+          opacity = 0.05;
+        }
+        
+        let W = 1, H = 1;
+        let centerX = 0, centerZ = 0;
+        
+        const { side, cStart, cEnd } = placement;
+        
+        if (layoutShape === '2-sided') {
+          if (side === 'left') {
+            W = 15;
+            H = Math.abs(cEnd - cStart);
+            centerX = -7.5;
+            centerZ = (cStart + cEnd) / 2;
+          } else {
+            W = 15;
+            H = Math.abs(cEnd - cStart);
+            centerX = 7.5;
+            centerZ = (cStart + cEnd) / 2;
+          }
+        } else {
+          // 4-sided
+          if (side === 'north') {
+            W = Math.abs(cEnd - cStart);
+            H = 15;
+            centerX = (cStart + cEnd) / 2;
+            centerZ = 7.5;
+          } else if (side === 'south') {
+            W = Math.abs(cEnd - cStart);
+            H = 15;
+            centerX = (cStart + cEnd) / 2;
+            centerZ = -7.5;
+          } else if (side === 'east') {
+            W = 15;
+            H = Math.abs(cEnd - cStart);
+            centerX = 7.5;
+            centerZ = (cStart + cEnd) / 2;
+          } else if (side === 'west') {
+            W = 15;
+            H = Math.abs(cEnd - cStart);
+            centerX = -7.5;
+            centerZ = (cStart + cEnd) / 2;
+          }
+        }
+        
+        const shadeGeo = new THREE.PlaneGeometry(W, H);
+        shadeGeo.rotateX(-Math.PI / 2);
+        
+        const shadeMat = new THREE.MeshBasicMaterial({
+          color: new THREE.Color().setHSL(sectorHue / 360, 0.85, 0.55),
+          transparent: true,
+          opacity: opacity,
+          side: THREE.DoubleSide
+        });
+        
+        const shadeMesh = new THREE.Mesh(shadeGeo, shadeMat);
+        shadeMesh.position.set(centerX, -0.19, centerZ);
+        shadesGroup.add(shadeMesh);
+      });
+    }
 
   }, [stocks, heightMetric, areaMetric, colorMetric, selectedSector, searchQuery, selectedStock, layoutShape]);
 
