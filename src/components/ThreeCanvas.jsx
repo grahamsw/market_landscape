@@ -784,37 +784,37 @@ export default function ThreeCanvas({
         
         if (layoutShape === '2-sided') {
           if (side === 'left') {
-            W = 15;
+            W = 48;
             H = Math.abs(cEnd - cStart);
-            centerX = -7.5;
+            centerX = -24;
             centerZ = (cStart + cEnd) / 2;
           } else {
-            W = 15;
+            W = 48;
             H = Math.abs(cEnd - cStart);
-            centerX = 7.5;
+            centerX = 24;
             centerZ = (cStart + cEnd) / 2;
           }
         } else {
           // 4-sided
           if (side === 'north') {
             W = Math.abs(cEnd - cStart);
-            H = 15;
+            H = 48;
             centerX = (cStart + cEnd) / 2;
-            centerZ = 7.5;
+            centerZ = 24;
           } else if (side === 'south') {
             W = Math.abs(cEnd - cStart);
-            H = 15;
+            H = 48;
             centerX = (cStart + cEnd) / 2;
-            centerZ = -7.5;
+            centerZ = -24;
           } else if (side === 'east') {
-            W = 15;
+            W = 48;
             H = Math.abs(cEnd - cStart);
-            centerX = 7.5;
+            centerX = 24;
             centerZ = (cStart + cEnd) / 2;
           } else if (side === 'west') {
-            W = 15;
+            W = 48;
             H = Math.abs(cEnd - cStart);
-            centerX = -7.5;
+            centerX = -24;
             centerZ = (cStart + cEnd) / 2;
           }
         }
