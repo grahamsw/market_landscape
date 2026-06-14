@@ -8,10 +8,15 @@ The application represents each stock as a 3D building (cuboid) where its physic
 
 ## Features
 
+- **Multiple Market Indices Support**: Switch dynamically between:
+  - **S&P 500 Select**: A curated collection of 45 major US equities across all 11 sectors.
+  - **Dow Jones 30**: The 30 components of the Dow Jones Industrial Average.
+  - **Nasdaq 100 (Top)**: 40 top-weighted components of the Nasdaq-100.
+  - **FTSE 100 (Top)**: 35 major London Stock Exchange components (with `.L` suffixes).
 - **Dynamic 3D Treemap Packing**: Stocks are packed tightly against each other, aligned flush against a straight inland wall, with the waterfront edges allowed to be ragged and jagged.
 - **Two Coastal Configurations**:
-  - **2-Sided Channel**: Sectors face each other across a straight central river/channel.
-  - **4-Sided Harbor**: Sectors encircle a central square pool/harbor.
+  - **2-Sided Channel**: Sectors face each other across a straight central channel.
+  - **4-Sided Harbor**: Sectors encircle a central square harbor.
 - **Interactive Controls**:
   - **Orbit Navigation**: Drag to rotate, scroll to zoom, and right-click/ctrl-drag to pan.
   - **Dynamic Texturing**: Stock ticker symbols are dynamically rendered in bold white letters directly on the top face of each 3D building using HTML5 canvas texture mapping.
