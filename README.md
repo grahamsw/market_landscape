@@ -11,8 +11,8 @@ The application represents each stock as a 3D building (cuboid) where its physic
 - **Multiple Market Indices Support**: Switch dynamically between:
   - **S&P 500 Select**: A curated collection of 45 major US equities across all 11 sectors.
   - **Dow Jones 30**: The 30 components of the Dow Jones Industrial Average.
-  - **Nasdaq 100 (Top)**: 40 top-weighted components of the Nasdaq-100.
-  - **FTSE 100 (Top)**: 35 major London Stock Exchange components (with `.L` suffixes).
+  - **Nasdaq 100 (Full)**: The complete list of 100 components of the Nasdaq-100.
+  - **FTSE 100 (Full)**: The complete list of 100 components of the FTSE 100 on the London Stock Exchange (with `.L` suffixes).
 - **Dynamic 3D Treemap Packing**: Stocks are packed tightly against each other, aligned flush against a straight inland wall, with the waterfront edges allowed to be ragged and jagged.
 - **Two Coastal Configurations**:
   - **2-Sided Channel**: Sectors face each other across a straight central channel.
