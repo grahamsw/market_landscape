@@ -784,37 +784,37 @@ export default function ThreeCanvas({
         
         if (layoutShape === '2-sided') {
           if (side === 'left') {
-            W = 48;
+            W = 43;
             H = Math.abs(cEnd - cStart);
-            centerX = -24;
+            centerX = -26.5;
             centerZ = (cStart + cEnd) / 2;
           } else {
-            W = 48;
+            W = 43;
             H = Math.abs(cEnd - cStart);
-            centerX = 24;
+            centerX = 26.5;
             centerZ = (cStart + cEnd) / 2;
           }
         } else {
           // 4-sided
           if (side === 'north') {
             W = Math.abs(cEnd - cStart);
-            H = 48;
+            H = 38;
             centerX = (cStart + cEnd) / 2;
-            centerZ = 24;
+            centerZ = 29;
           } else if (side === 'south') {
             W = Math.abs(cEnd - cStart);
-            H = 48;
+            H = 38;
             centerX = (cStart + cEnd) / 2;
-            centerZ = -24;
+            centerZ = -29;
           } else if (side === 'east') {
-            W = 48;
+            W = 38;
             H = Math.abs(cEnd - cStart);
-            centerX = 24;
+            centerX = 29;
             centerZ = (cStart + cEnd) / 2;
           } else if (side === 'west') {
-            W = 48;
+            W = 38;
             H = Math.abs(cEnd - cStart);
-            centerX = -24;
+            centerX = -29;
             centerZ = (cStart + cEnd) / 2;
           }
         }
@@ -823,7 +823,7 @@ export default function ThreeCanvas({
         shadeGeo.rotateX(-Math.PI / 2);
         
         const shadeMat = new THREE.MeshBasicMaterial({
-          color: new THREE.Color().setHSL(sectorHue / 360, 0.85, 0.55),
+          color: new THREE.Color().setHSL(sectorHue / 360, 0.85, 0.52),
           transparent: true,
           opacity: opacity,
           side: THREE.DoubleSide

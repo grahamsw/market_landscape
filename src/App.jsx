@@ -325,7 +325,7 @@ export default function App() {
         <div style={{ flex: 1, borderTop: '1px solid var(--border-color)', paddingTop: '20px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '8px' }}>
             <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-              <Layers size={14} /> Coast Sectors
+              <Layers size={14} /> Sectors
             </h2>
             {(selectedSector || searchQuery) && (
               <button 
