@@ -94,27 +94,30 @@ export const INDEX_TICKERS = {
     'CAT', 'HON', 'BA', 'MMM',
     'SHW'
   ],
-  'nasdaq': [
-    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'ASML', 'AMAT', 'LRCX', 'PANW',
-    'GOOGL', 'META', 'NFLX', 'CMCSA',
-    'AMZN', 'TSLA', 'COST', 'SBUX', 'MELI', 'ORLY', 'LULU', 'MAR', 'PDD',
-    'PEP', 'MDLZ', 'KDP', 'MNST',
-    'ISRG', 'REGN', 'VRTX', 'AMGN', 'GILD',
-    'HON', 'CSX', 'ODFL', 'FAST', 'ADP',
-    'CEG', 'XEL'
-  ],
-  'ftse': [
-    'AZN.L', 'GSK.L', 'HIK.L',
-    'HSBA.L', 'BARC.L', 'LLOY.L', 'STAN.L', 'PRU.L', 'LGEN.L',
-    'SHEL.L', 'BP.L',
-    'ULVR.L', 'DGE.L', 'BATS.L', 'IMB.L', 'TSCO.L', 'SBRY.L',
-    'RIO.L', 'AAL.L', 'GLEN.L', 'ANTO.L',
-    'RR.L', 'REL.L', 'BA.L', 'IAG.L',
-    'VOD.L', 'BT-A.L',
-    'NG.L', 'UU.L', 'SVT.L',
-    'LAND.L', 'UTG.L',
-    'FLTR.L', 'IHG.L', 'NEXT.L'
-  ]
+  'nasdaq': Array.from(new Set([
+    'AAPL', 'MSFT', 'NVDA', 'AMZN', 'META', 'GOOGL', 'GOOG', 'AVGO', 'TSLA', 'COST',
+    'NFLX', 'PEP', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'AMGN', 'ISRG', 'HON',
+    'CMCSA', 'BKNG', 'MDLZ', 'VRTX', 'REGN', 'PANW', 'ADP', 'LRCX', 'MU', 'MELI',
+    'GILD', 'AMAT', 'ADI', 'PDD', 'SBUX', 'INTC', 'SNPS', 'KLAC', 'CDNS', 'PYPL',
+    'CSX', 'MAR', 'WDAY', 'ORLY', 'ROP', 'CTAS', 'NXPI', 'ADSK', 'PCAR', 'PAYX',
+    'MCHP', 'CPRT', 'FTNT', 'FAST', 'CEG', 'MNST', 'KDP', 'KHC', 'DDOG', 'ODFL',
+    'TEAM', 'ANET', 'DXCM', 'VRSK', 'EXC', 'LULU', 'BKR', 'GEHC', 'AEP', 'IDXX',
+    'ON', 'CTSH', 'MDB', 'XEL', 'CDW', 'EA', 'WBD', 'MRVL', 'ABNB', 'BMRN',
+    'CSGP', 'ROST', 'BIIB', 'PTC', 'ILMN', 'ALGN', 'KEYS', 'ANSS', 'ZS', 'SIRI',
+    'ENPH', 'DLTR', 'EBAY', 'FANG', 'GDDY', 'TTD', 'VRSN', 'OKTA', 'ASML'
+  ])),
+  'ftse': Array.from(new Set([
+    'AZN.L', 'SHEL.L', 'HSBA.L', 'ULVR.L', 'BP.L', 'DGE.L', 'GSK.L', 'BATS.L', 'RIO.L', 'REL.L',
+    'GLEN.L', 'BA.L', 'RKT.L', 'NG.L', 'LLOY.L', 'BARC.L', 'LSEG.L', 'CPG.L', 'FLTR.L', 'EXPN.L',
+    'PRU.L', 'IMB.L', 'TSCO.L', 'RR.L', 'STAN.L', 'SSE.L', 'LGEN.L', 'ANTO.L', 'AHT.L', 'AAL.L',
+    'HLMA.L', 'SGRO.L', 'SGE.L', 'ITRK.L', 'BNZL.L', 'SN.L', 'WPP.L', 'AV.L', 'NEXT.L', 'IHG.L',
+    'SPX.L', 'RTO.L', 'MNDI.L', 'UU.L', 'SVT.L', 'PSON.L', 'MRO.L', 'KGF.L', 'LAND.L', 'BLND.L',
+    'BDEV.L', 'TW.L', 'PSN.L', 'MKS.L', 'SBRY.L', 'CNA.L', 'JD.L', 'WTB.L', 'ABF.L', 'BRBY.L',
+    'SDR.L', 'PHNX.L', 'MNG.L', 'SJP.L', 'RMV.L', 'AUTO.L', 'RS1.L', 'HIK.L', 'SMDS.L', 'ADM.L',
+    'BEZ.L', 'HWDN.L', 'IMI.L', 'WEIR.L', 'CTEC.L', 'BME.L', 'ICP.L', 'EZJ.L', 'FRAS.L', 'OCDO.L',
+    'ENT.L', 'CRDA.L', 'HALE.L', 'VOD.L', 'BT-A.L', 'IAG.L', 'INF.L', 'NWG.L', 'SMT.L', 'MONY.L',
+    'VTRY.L', 'BBY.L', 'UTG.L', 'ABDN.L', 'DPH.L', 'HLN.L'
+  ]))
 };
 
 // Helper to get tickers for an index
@@ -269,6 +272,40 @@ export const TICKER_SECTOR_MAP = {
   'UTG.L': 'Real Estate'
 };
 
+// Dynamic helper function with pattern matching rules to resolve sector for any ticker
+export const getSectorForTicker = (ticker) => {
+  if (!ticker) return 'Technology';
+  const sector = TICKER_SECTOR_MAP[ticker];
+  if (sector) return sector;
+  
+  // Dynamic fallback heuristics for unmapped tickers
+  if (ticker.includes('.L')) {
+    // UK Stocks
+    if (/^(HSBA|BARC|LLOY|STAN|PRU|LGEN|AV|SJP|MNG|PHNX|SDR|ICP|NWG|ABDN)/i.test(ticker)) return 'Financials';
+    if (/^(SHEL|BP)/i.test(ticker)) return 'Energy';
+    if (/^(AZN|GSK|HIK|HALE|HLN)/i.test(ticker)) return 'Healthcare';
+    if (/^(ULVR|DGE|BATS|IMB|TSCO|SBRY|ABF|CNA|MKS)/i.test(ticker)) return 'Consumer Staples';
+    if (/^(RIO|AAL|GLEN|ANTO|CRDA|SMDS|MNDI)/i.test(ticker)) return 'Materials';
+    if (/^(LAND|UTG|SGRO|BLND)/i.test(ticker)) return 'Real Estate';
+    if (/^(NG|UU|SVT|SSE)/i.test(ticker)) return 'Utilities';
+    if (/^(FLTR|IHG|NEXT|WTB|JD|BRBY|ENT|EZJ|FRAS|MONY)/i.test(ticker)) return 'Consumer Discretionary';
+    return 'Industrials'; // Default for UK (Rolls-Royce, BAE Systems, RELX, Vetry, etc.)
+  } else {
+    // US Stocks
+    if (/^(AAPL|MSFT|NVDA|AVGO|ADBE|AMD|QCOM|TXN|INTU|ASML|AMAT|LRCX|PANW|CRM|CSCO|IBM|INTC|SNPS|CDNS|ADSK|MCHP|FTNT|DDOG|TEAM|ANET|ON|CTSH|MDB|CDW|MRVL|PTC|KEYS|ANSS|ZS|ENPH|OKTA|WDAY)/i.test(ticker)) return 'Technology';
+    if (/^(JPM|BAC|MS|GS|V|MA|AXP|TRV|BKNG|PYPL|PAYX|CPRT|VRSK|ADP)/i.test(ticker)) return 'Financials';
+    if (/^(LLY|UNH|JNJ|MRK|ABBV|AMGN|ISRG|REGN|VRTX|GILD|DXCM|GEHC|IDXX|BIIB|ILMN|ALGN|BMRN)/i.test(ticker)) return 'Healthcare';
+    if (/^(AMZN|TSLA|COST|SBUX|MELI|ORLY|LULU|MAR|PDD|ROST|DLTR|EBAY|GDDY|TTD|ABNB|CSGP)/i.test(ticker)) return 'Consumer Discretionary';
+    if (/^(WMT|PG|KO|PEP|MDLZ|KDP|MNST|KHC)/i.test(ticker)) return 'Consumer Staples';
+    if (/^(GOOGL|GOOG|META|NFLX|CMCSA|DIS|VZ|SIRI|WBD)/i.test(ticker)) return 'Communication Services';
+    if (/^(XOM|CVX|COP|SLB|FANG|BKR)/i.test(ticker)) return 'Energy';
+    if (/^(GE|CAT|HON|UNP|LMT|BA|MMM|CSX|ODFL|FAST)/i.test(ticker)) return 'Industrials';
+    if (/^(NEE|DUK|SO|CEG|XEL|EXC|AEP)/i.test(ticker)) return 'Utilities';
+    if (/^(LIN|SHW|APD)/i.test(ticker)) return 'Materials';
+    return 'Real Estate'; // Default fallback
+  }
+};
+
 // Full name mappings for offline presentation fallback
 export const TICKER_NAME_MAP = {
   // S&P Select
@@ -363,6 +400,60 @@ export const TICKER_NAME_MAP = {
   'ADP': 'Automatic Data Processing',
   'CEG': 'Constellation Energy',
   'XEL': 'Xcel Energy Inc.',
+  'ZS': 'Zscaler Inc.',
+  'OKTA': 'Okta Inc.',
+  'MU': 'Micron Technology',
+  'ADI': 'Analog Devices',
+  'SNPS': 'Synopsys Inc.',
+  'KLAC': 'KLA Corporation',
+  'CDNS': 'Cadence Design Systems',
+  'PYPL': 'PayPal Holdings',
+  'WDAY': 'Workday Inc.',
+  'ROP': 'Roper Technologies',
+  'CTAS': 'Cintas Corporation',
+  'NXPI': 'NXP Semiconductors',
+  'ADSK': 'Autodesk Inc.',
+  'PCAR': 'PACCAR Inc.',
+  'PAYX': 'Paychex Inc.',
+  'CPRT': 'Copart Inc.',
+  'FTNT': 'Fortinet Inc.',
+  'KHC': 'Kraft Heinz Co.',
+  'DDOG': 'Datadog Inc.',
+  'ODFL': 'Old Dominion Freight Line',
+  'TEAM': 'Atlassian Corp.',
+  'ANET': 'Arista Networks',
+  'DXCM': 'DexCom Inc.',
+  'VRSK': 'Verisk Analytics',
+  'EXC': 'Exelon Corporation',
+  'BKR': 'Baker Hughes Co.',
+  'GEHC': 'GE HealthCare',
+  'AEP': 'American Electric Power',
+  'IDXX': 'IDEXX Laboratories',
+  'ON': 'ON Semiconductor',
+  'CTSH': 'Cognizant Technology',
+  'MDB': 'MongoDB Inc.',
+  'CDW': 'CDW Corporation',
+  'EA': 'Electronic Arts',
+  'WBD': 'Warner Bros. Discovery',
+  'MRVL': 'Marvell Technology',
+  'ABNB': 'Airbnb Inc.',
+  'BMRN': 'BioMarin Pharmaceutical',
+  'CSGP': 'CoStar Group',
+  'ROST': 'Ross Stores',
+  'BIIB': 'Biogen Inc.',
+  'PTC': 'PTC Inc.',
+  'ILMN': 'Illumina Inc.',
+  'ALGN': 'Align Technology',
+  'KEYS': 'Keysight Technologies',
+  'ANSS': 'Ansys Inc.',
+  'SIRI': 'Sirius XM Holdings',
+  'ENPH': 'Enphase Energy',
+  'DLTR': 'Dollar Tree',
+  'EBAY': 'eBay Inc.',
+  'FANG': 'Diamondback Energy',
+  'GDDY': 'GoDaddy Inc.',
+  'TTD': 'The Trade Desk',
+  'VRSN': 'Verisign Inc.',
 
   // FTSE 100
   'AZN.L': 'AstraZeneca plc',
@@ -399,13 +490,73 @@ export const TICKER_NAME_MAP = {
   'UTG.L': 'Unite Group plc',
   'FLTR.L': 'Flutter Entertainment',
   'IHG.L': 'InterContinental Hotels Group',
-  'NEXT.L': 'Next plc'
+  'NEXT.L': 'Next plc',
+  'CPG.L': 'Compass Group plc',
+  'EXPN.L': 'Experian plc',
+  'RKT.L': 'Reckitt Benckiser Group',
+  'LSEG.L': 'London Stock Exchange Group',
+  'SSE.L': 'SSE plc',
+  'AHT.L': 'Ashtead Group plc',
+  'HLMA.L': 'Halma plc',
+  'SGRO.L': 'SEGRO plc',
+  'SGE.L': 'Sage Group plc',
+  'ITRK.L': 'Intertek Group plc',
+  'BNZL.L': 'Bunzl plc',
+  'SN.L': 'Smith & Nephew plc',
+  'WPP.L': 'WPP plc',
+  'AV.L': 'Aviva plc',
+  'SPX.L': 'Spirax Group plc',
+  'RTO.L': 'Rentokil Initial plc',
+  'MNDI.L': 'Mondi plc',
+  'PSON.L': 'Pearson plc',
+  'MRO.L': 'Melrose Industries plc',
+  'KGF.L': 'Kingfisher plc',
+  'BLND.L': 'British Land Company',
+  'BDEV.L': 'Barratt Redrow plc',
+  'TW.L': 'Taylor Wimpey plc',
+  'PSN.L': 'Persimmon plc',
+  'MKS.L': 'Marks & Spencer Group',
+  'CNA.L': 'Centrica plc',
+  'JD.L': 'JD Sports Fashion',
+  'WTB.L': 'Whitbread plc',
+  'ABF.L': 'Associated British Foods',
+  'BRBY.L': 'Burberry Group plc',
+  'SDR.L': 'Schroders plc',
+  'PHNX.L': 'Phoenix Group Holdings',
+  'MNG.L': 'M&G plc',
+  'SJP.L': 'St. James\'s Place plc',
+  'RMV.L': 'Rightmove plc',
+  'AUTO.L': 'Auto Trader Group plc',
+  'RS1.L': 'RS Group plc',
+  'SMDS.L': 'DS Smith plc',
+  'ADM.L': 'Admiral Group plc',
+  'BEZ.L': 'Beazley plc',
+  'HWDN.L': 'Howden Joinery Group',
+  'IMI.L': 'IMI plc',
+  'WEIR.L': 'Weir Group plc',
+  'CTEC.L': 'ConvaTec Group plc',
+  'BME.L': 'B&M European Value Retail',
+  'ICP.L': 'Intermediate Capital Group',
+  'EZJ.L': 'easyJet plc',
+  'FRAS.L': 'Frasers Group plc',
+  'OCDO.L': 'Ocado Group plc',
+  'ENT.L': 'Entain plc',
+  'CRDA.L': 'Croda International plc',
+  'HALE.L': 'Haleon plc',
+  'INF.L': 'Informa plc',
+  'NWG.L': 'NatWest Group plc',
+  'SMT.L': 'Scottish Mortgage Investment Trust',
+  'MONY.L': 'MONY Group plc',
+  'VTRY.L': 'Vistry Group plc',
+  'BBY.L': 'Balfour Beatty plc',
+  'ABDN.L': 'abrdn plc',
+  'DPH.L': 'Dechra Pharmaceuticals plc',
+  'HLN.L': 'Haleon plc (Alternate)'
 };
 
 // Generates realistic mock stock objects for fallback and offline use
 export const generateMockStocks = (tickers) => {
   return tickers.map(ticker => {
-    // Deterministic random seed based on ticker symbol
     let seed = 0;
     for (let i = 0; i < ticker.length; i++) {
       seed += ticker.charCodeAt(i);
@@ -416,11 +567,9 @@ export const generateMockStocks = (tickers) => {
     const priceBase = isUK ? 150 : 25;
     const price = priceBase + (seed % 650) + Math.random() * 5;
     
-    // Day net changes
     const changePercent = -4.0 + (seed % 8) + Math.random() * 1.5;
     const change = price * (changePercent / 100);
     
-    // Market Cap base estimation (UK in GBP, US in USD)
     const mcBase = isUK ? 3e9 : 8e9;
     const marketCap = mcBase * (5 + (seed % 145));
     
@@ -444,5 +593,4 @@ export const generateMockStocks = (tickers) => {
   });
 };
 
-// Legacy fallback list kept for compatibility
 export const MOCK_STOCKS = generateMockStocks(INDEX_TICKERS['s&p']);

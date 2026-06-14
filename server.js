@@ -39,27 +39,30 @@ const INDEX_TICKERS = {
     'CAT', 'HON', 'BA', 'MMM',
     'SHW'
   ],
-  'nasdaq': [
-    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'ASML', 'AMAT', 'LRCX', 'PANW',
-    'GOOGL', 'META', 'NFLX', 'CMCSA',
-    'AMZN', 'TSLA', 'COST', 'SBUX', 'MELI', 'ORLY', 'LULU', 'MAR', 'PDD',
-    'PEP', 'MDLZ', 'KDP', 'MNST',
-    'ISRG', 'REGN', 'VRTX', 'AMGN', 'GILD',
-    'HON', 'CSX', 'ODFL', 'FAST', 'ADP',
-    'CEG', 'XEL'
-  ],
-  'ftse': [
-    'AZN.L', 'GSK.L', 'HIK.L',
-    'HSBA.L', 'BARC.L', 'LLOY.L', 'STAN.L', 'PRU.L', 'LGEN.L',
-    'SHEL.L', 'BP.L',
-    'ULVR.L', 'DGE.L', 'BATS.L', 'IMB.L', 'TSCO.L', 'SBRY.L',
-    'RIO.L', 'AAL.L', 'GLEN.L', 'ANTO.L',
-    'RR.L', 'REL.L', 'BA.L', 'IAG.L',
-    'VOD.L', 'BT-A.L',
-    'NG.L', 'UU.L', 'SVT.L',
-    'LAND.L', 'UTG.L',
-    'FLTR.L', 'IHG.L', 'NEXT.L'
-  ]
+  'nasdaq': Array.from(new Set([
+    'AAPL', 'MSFT', 'NVDA', 'AMZN', 'META', 'GOOGL', 'GOOG', 'AVGO', 'TSLA', 'COST',
+    'NFLX', 'PEP', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'AMGN', 'ISRG', 'HON',
+    'CMCSA', 'BKNG', 'MDLZ', 'VRTX', 'REGN', 'PANW', 'ADP', 'LRCX', 'MU', 'MELI',
+    'GILD', 'AMAT', 'ADI', 'PDD', 'SBUX', 'INTC', 'SNPS', 'KLAC', 'CDNS', 'PYPL',
+    'CSX', 'MAR', 'WDAY', 'ORLY', 'ROP', 'CTAS', 'NXPI', 'ADSK', 'PCAR', 'PAYX',
+    'MCHP', 'CPRT', 'FTNT', 'FAST', 'CEG', 'MNST', 'KDP', 'KHC', 'DDOG', 'ODFL',
+    'TEAM', 'ANET', 'DXCM', 'VRSK', 'EXC', 'LULU', 'BKR', 'GEHC', 'AEP', 'IDXX',
+    'ON', 'CTSH', 'MDB', 'XEL', 'CDW', 'EA', 'WBD', 'MRVL', 'ABNB', 'BMRN',
+    'CSGP', 'ROST', 'BIIB', 'PTC', 'ILMN', 'ALGN', 'KEYS', 'ANSS', 'ZS', 'SIRI',
+    'ENPH', 'DLTR', 'EBAY', 'FANG', 'GDDY', 'TTD', 'VRSN', 'OKTA', 'ASML'
+  ])),
+  'ftse': Array.from(new Set([
+    'AZN.L', 'SHEL.L', 'HSBA.L', 'ULVR.L', 'BP.L', 'DGE.L', 'GSK.L', 'BATS.L', 'RIO.L', 'REL.L',
+    'GLEN.L', 'BA.L', 'RKT.L', 'NG.L', 'LLOY.L', 'BARC.L', 'LSEG.L', 'CPG.L', 'FLTR.L', 'EXPN.L',
+    'PRU.L', 'IMB.L', 'TSCO.L', 'RR.L', 'STAN.L', 'SSE.L', 'LGEN.L', 'ANTO.L', 'AHT.L', 'AAL.L',
+    'HLMA.L', 'SGRO.L', 'SGE.L', 'ITRK.L', 'BNZL.L', 'SN.L', 'WPP.L', 'AV.L', 'NEXT.L', 'IHG.L',
+    'SPX.L', 'RTO.L', 'MNDI.L', 'UU.L', 'SVT.L', 'PSON.L', 'MRO.L', 'KGF.L', 'LAND.L', 'BLND.L',
+    'BDEV.L', 'TW.L', 'PSN.L', 'MKS.L', 'SBRY.L', 'CNA.L', 'JD.L', 'WTB.L', 'ABF.L', 'BRBY.L',
+    'SDR.L', 'PHNX.L', 'MNG.L', 'SJP.L', 'RMV.L', 'AUTO.L', 'RS1.L', 'HIK.L', 'SMDS.L', 'ADM.L',
+    'BEZ.L', 'HWDN.L', 'IMI.L', 'WEIR.L', 'CTEC.L', 'BME.L', 'ICP.L', 'EZJ.L', 'FRAS.L', 'OCDO.L',
+    'ENT.L', 'CRDA.L', 'HALE.L', 'VOD.L', 'BT-A.L', 'IAG.L', 'INF.L', 'NWG.L', 'SMT.L', 'MONY.L',
+    'VTRY.L', 'BBY.L', 'UTG.L', 'ABDN.L', 'DPH.L', 'HLN.L'
+  ]))
 };
 
 // Endpoint to fetch stock quotes for a specific index

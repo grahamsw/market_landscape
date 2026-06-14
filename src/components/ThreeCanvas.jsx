@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { SECTORS, TICKER_SECTOR_MAP } from '../utils/marketData';
+import { SECTORS, getSectorForTicker } from '../utils/marketData';
 
 export default function ThreeCanvas({
   stocks,
@@ -442,7 +442,7 @@ export default function ThreeCanvas({
     sectorKeys.forEach(k => { stocksBySector[k] = []; });
     
     stocks.forEach(stock => {
-      const sector = TICKER_SECTOR_MAP[stock.symbol];
+      const sector = getSectorForTicker(stock.symbol);
       if (sector && stocksBySector[sector]) {
         stocksBySector[sector].push(stock);
       }

@@ -4,7 +4,7 @@ import {
   Info, TrendingUp, TrendingDown, Layers, Map, Compass 
 } from 'lucide-react';
 import ThreeCanvas from './components/ThreeCanvas';
-import { SECTORS, TICKER_SECTOR_MAP, getIndexTickers, generateMockStocks } from './utils/marketData';
+import { SECTORS, getIndexTickers, generateMockStocks, getSectorForTicker } from './utils/marketData';
 
 export default function App() {
   // Stock data states
@@ -109,7 +109,7 @@ export default function App() {
     Object.keys(SECTORS).forEach(key => { counts[key] = 0; });
     
     stocks.forEach(stock => {
-      const sector = TICKER_SECTOR_MAP[stock.symbol];
+      const sector = getSectorForTicker(stock.symbol);
       if (sector && counts[sector] !== undefined) {
         counts[sector]++;
       }
@@ -466,7 +466,7 @@ export default function App() {
             <div>
               {/* Sector Tag */}
               {(() => {
-                const sector = TICKER_SECTOR_MAP[currentStockDetails.symbol];
+                const sector = getSectorForTicker(currentStockDetails.symbol);
                 const color = sector ? `hsl(${SECTORS[sector].hue}, 85%, 55%)` : 'var(--primary)';
                 return (
                   <span 
@@ -533,7 +533,7 @@ export default function App() {
 
             {/* Micro details or sector information */}
             {(() => {
-              const sector = TICKER_SECTOR_MAP[currentStockDetails.symbol];
+              const sector = getSectorForTicker(currentStockDetails.symbol);
               if (sector) {
                 return (
                   <div style={{ marginTop: '8px', padding: '10px', background: 'rgba(255,255,255,0.02)', borderRadius: '6px', border: '1px solid var(--border-color)' }}>
