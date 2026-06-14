@@ -1,4 +1,4 @@
-// Sector definitions with HSL colors and description names
+// Sector definitions with HSL colors and descriptions
 export const SECTORS = {
   'Technology': {
     hue: 195, // Neon Cyan
@@ -10,7 +10,7 @@ export const SECTORS = {
     hue: 45, // Neon Gold
     name: 'Financials',
     label: 'Financials',
-    description: 'Banks, Payment Networks & Investment Houses'
+    description: 'Banks, Payment Networks, Investment Houses & Insurance'
   },
   'Healthcare': {
     hue: 330, // Neon Pink
@@ -22,7 +22,7 @@ export const SECTORS = {
     hue: 270, // Electric Purple
     name: 'Consumer Discretionary',
     label: 'Consumer Discretionary',
-    description: 'E-Commerce, Automotive & Retail Giants'
+    description: 'E-Commerce, Automotive, Retail Giants & Leisure'
   },
   'Consumer Staples': {
     hue: 160, // Mint Green
@@ -34,7 +34,7 @@ export const SECTORS = {
     hue: 15, // Electric Coral
     name: 'Communication Services',
     label: 'Communication Services',
-    description: 'Internet Services, Social Media & Entertainment'
+    description: 'Internet Services, Social Media, Entertainment & Telecoms'
   },
   'Energy': {
     hue: 35, // Amber Orange
@@ -46,7 +46,7 @@ export const SECTORS = {
     hue: 215, // Slate Blue
     name: 'Industrials',
     label: 'Industrials',
-    description: 'Conglomerates, Aerospace & Logistics'
+    description: 'Aerospace, Defense, Logistics & Conglomerates'
   },
   'Utilities': {
     hue: 80, // Lime
@@ -58,7 +58,7 @@ export const SECTORS = {
     hue: 120, // Sage Green
     name: 'Materials',
     label: 'Materials',
-    description: 'Chemicals, Mining & Packaging'
+    description: 'Chemicals, Mining, Packaging & Metals'
   },
   'Real Estate': {
     hue: 300, // Violet
@@ -68,7 +68,61 @@ export const SECTORS = {
   }
 };
 
-// Mapping of stock tickers to their respective sectors
+// Index components mapping
+export const INDEX_TICKERS = {
+  's&p': [
+    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ORCL',
+    'JPM', 'BAC', 'MS', 'GS', 'V', 'MA',
+    'LLY', 'UNH', 'JNJ', 'MRK', 'ABBV',
+    'AMZN', 'TSLA', 'HD', 'MCD', 'NKE',
+    'WMT', 'PG', 'KO', 'PEP', 'COST',
+    'GOOGL', 'META', 'NFLX', 'DIS', 'CMCSA',
+    'XOM', 'CVX', 'COP', 'SLB',
+    'GE', 'CAT', 'HON', 'UNP', 'LMT',
+    'NEE', 'DUK', 'SO',
+    'LIN', 'SHW', 'APD',
+    'PLD', 'AMT', 'CCI'
+  ],
+  'dow': [
+    'AAPL', 'MSFT', 'NVDA', 'CRM', 'CSCO', 'IBM',
+    'AXP', 'GS', 'JPM', 'TRV', 'V',
+    'AMGN', 'JNJ', 'MRK', 'UNH',
+    'AMZN', 'HD', 'MCD', 'NKE',
+    'KO', 'PG', 'WMT',
+    'DIS', 'VZ',
+    'CVX',
+    'CAT', 'HON', 'BA', 'MMM',
+    'SHW'
+  ],
+  'nasdaq': [
+    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'ASML', 'AMAT', 'LRCX', 'PANW',
+    'GOOGL', 'META', 'NFLX', 'CMCSA',
+    'AMZN', 'TSLA', 'COST', 'SBUX', 'MELI', 'ORLY', 'LULU', 'MAR', 'PDD',
+    'PEP', 'MDLZ', 'KDP', 'MNST',
+    'ISRG', 'REGN', 'VRTX', 'AMGN', 'GILD',
+    'HON', 'CSX', 'ODFL', 'FAST', 'ADP',
+    'CEG', 'XEL'
+  ],
+  'ftse': [
+    'AZN.L', 'GSK.L', 'HIK.L',
+    'HSBA.L', 'BARC.L', 'LLOY.L', 'STAN.L', 'PRU.L', 'LGEN.L',
+    'SHEL.L', 'BP.L',
+    'ULVR.L', 'DGE.L', 'BATS.L', 'IMB.L', 'TSCO.L', 'SBRY.L',
+    'RIO.L', 'AAL.L', 'GLEN.L', 'ANTO.L',
+    'RR.L', 'REL.L', 'BA.L', 'IAG.L',
+    'VOD.L', 'BT-A.L',
+    'NG.L', 'UU.L', 'SVT.L',
+    'LAND.L', 'UTG.L',
+    'FLTR.L', 'IHG.L', 'NEXT.L'
+  ]
+};
+
+// Helper to get tickers for an index
+export const getIndexTickers = (indexKey) => {
+  return INDEX_TICKERS[indexKey] || INDEX_TICKERS['s&p'];
+};
+
+// Mapping of stock tickers across all indices to their respective GICS sectors
 export const TICKER_SECTOR_MAP = {
   // Technology
   'AAPL': 'Technology',
@@ -76,6 +130,19 @@ export const TICKER_SECTOR_MAP = {
   'NVDA': 'Technology',
   'AVGO': 'Technology',
   'ORCL': 'Technology',
+  'CRM': 'Technology',
+  'CSCO': 'Technology',
+  'IBM': 'Technology',
+  'INTC': 'Technology',
+  'ADBE': 'Technology',
+  'AMD': 'Technology',
+  'QCOM': 'Technology',
+  'TXN': 'Technology',
+  'INTU': 'Technology',
+  'ASML': 'Technology',
+  'AMAT': 'Technology',
+  'LRCX': 'Technology',
+  'PANW': 'Technology',
 
   // Financials
   'JPM': 'Financials',
@@ -84,6 +151,14 @@ export const TICKER_SECTOR_MAP = {
   'GS': 'Financials',
   'V': 'Financials',
   'MA': 'Financials',
+  'AXP': 'Financials',
+  'TRV': 'Financials',
+  'HSBA.L': 'Financials',
+  'BARC.L': 'Financials',
+  'LLOY.L': 'Financials',
+  'STAN.L': 'Financials',
+  'PRU.L': 'Financials',
+  'LGEN.L': 'Financials',
 
   // Healthcare
   'LLY': 'Healthcare',
@@ -91,6 +166,14 @@ export const TICKER_SECTOR_MAP = {
   'JNJ': 'Healthcare',
   'MRK': 'Healthcare',
   'ABBV': 'Healthcare',
+  'AMGN': 'Healthcare',
+  'ISRG': 'Healthcare',
+  'REGN': 'Healthcare',
+  'VRTX': 'Healthcare',
+  'GILD': 'Healthcare',
+  'AZN.L': 'Healthcare',
+  'GSK.L': 'Healthcare',
+  'HIK.L': 'Healthcare',
 
   // Consumer Discretionary
   'AMZN': 'Consumer Discretionary',
@@ -98,6 +181,15 @@ export const TICKER_SECTOR_MAP = {
   'HD': 'Consumer Discretionary',
   'MCD': 'Consumer Discretionary',
   'NKE': 'Consumer Discretionary',
+  'SBUX': 'Consumer Discretionary',
+  'MELI': 'Consumer Discretionary',
+  'ORLY': 'Consumer Discretionary',
+  'LULU': 'Consumer Discretionary',
+  'MAR': 'Consumer Discretionary',
+  'PDD': 'Consumer Discretionary',
+  'FLTR.L': 'Consumer Discretionary',
+  'IHG.L': 'Consumer Discretionary',
+  'NEXT.L': 'Consumer Discretionary',
 
   // Consumer Staples
   'WMT': 'Consumer Staples',
@@ -105,6 +197,15 @@ export const TICKER_SECTOR_MAP = {
   'KO': 'Consumer Staples',
   'PEP': 'Consumer Staples',
   'COST': 'Consumer Staples',
+  'MDLZ': 'Consumer Staples',
+  'KDP': 'Consumer Staples',
+  'MNST': 'Consumer Staples',
+  'ULVR.L': 'Consumer Staples',
+  'DGE.L': 'Consumer Staples',
+  'BATS.L': 'Consumer Staples',
+  'IMB.L': 'Consumer Staples',
+  'TSCO.L': 'Consumer Staples',
+  'SBRY.L': 'Consumer Staples',
 
   // Communication Services
   'GOOGL': 'Communication Services',
@@ -112,12 +213,17 @@ export const TICKER_SECTOR_MAP = {
   'NFLX': 'Communication Services',
   'DIS': 'Communication Services',
   'CMCSA': 'Communication Services',
+  'VZ': 'Communication Services',
+  'VOD.L': 'Communication Services',
+  'BT-A.L': 'Communication Services',
 
   // Energy
   'XOM': 'Energy',
   'CVX': 'Energy',
   'COP': 'Energy',
   'SLB': 'Energy',
+  'SHEL.L': 'Energy',
+  'BP.L': 'Energy',
 
   // Industrials
   'GE': 'Industrials',
@@ -125,93 +231,218 @@ export const TICKER_SECTOR_MAP = {
   'HON': 'Industrials',
   'UNP': 'Industrials',
   'LMT': 'Industrials',
+  'BA': 'Industrials',
+  'MMM': 'Industrials',
+  'CSX': 'Industrials',
+  'ODFL': 'Industrials',
+  'FAST': 'Industrials',
+  'ADP': 'Industrials',
+  'RR.L': 'Industrials',
+  'REL.L': 'Industrials',
+  'BA.L': 'Industrials',
+  'IAG.L': 'Industrials',
 
   // Utilities
   'NEE': 'Utilities',
   'DUK': 'Utilities',
   'SO': 'Utilities',
+  'CEG': 'Utilities',
+  'XEL': 'Utilities',
+  'NG.L': 'Utilities',
+  'UU.L': 'Utilities',
+  'SVT.L': 'Utilities',
 
   // Materials
   'LIN': 'Materials',
   'SHW': 'Materials',
   'APD': 'Materials',
+  'RIO.L': 'Materials',
+  'AAL.L': 'Materials',
+  'GLEN.L': 'Materials',
+  'ANTO.L': 'Materials',
 
   // Real Estate
   'PLD': 'Real Estate',
   'AMT': 'Real Estate',
-  'CCI': 'Real Estate'
+  'CCI': 'Real Estate',
+  'LAND.L': 'Real Estate',
+  'UTG.L': 'Real Estate'
 };
 
-// Robust, realistic mock data for local fallback and offline presentation
-export const MOCK_STOCKS = [
-  // Technology
-  { symbol: 'AAPL', name: 'Apple Inc.', price: 185.35, changePercent: 1.45, change: 2.65, marketCap: 2890000000000, volume: 55000000 },
-  { symbol: 'MSFT', name: 'Microsoft Corporation', price: 420.55, changePercent: 2.10, change: 8.65, marketCap: 3120000000000, volume: 22000000 },
-  { symbol: 'NVDA', name: 'NVIDIA Corporation', price: 925.10, changePercent: 4.85, change: 42.80, marketCap: 2280000000000, volume: 48000000 },
-  { symbol: 'AVGO', name: 'Broadcom Inc.', price: 1405.00, changePercent: -0.75, change: -10.60, marketCap: 654000000000, volume: 2500000 },
-  { symbol: 'ORCL', name: 'Oracle Corporation', price: 125.40, changePercent: 0.15, change: 0.19, marketCap: 345000000000, volume: 8000000 },
+// Full name mappings for offline presentation fallback
+export const TICKER_NAME_MAP = {
+  // S&P Select
+  'AAPL': 'Apple Inc.',
+  'MSFT': 'Microsoft Corporation',
+  'NVDA': 'NVIDIA Corporation',
+  'AVGO': 'Broadcom Inc.',
+  'ORCL': 'Oracle Corporation',
+  'JPM': 'JPMorgan Chase & Co.',
+  'BAC': 'Bank of America Corp.',
+  'MS': 'Morgan Stanley',
+  'GS': 'Goldman Sachs Group Inc.',
+  'V': 'Visa Inc.',
+  'MA': 'Mastercard Inc.',
+  'LLY': 'Eli Lilly and Company',
+  'UNH': 'UnitedHealth Group Inc.',
+  'JNJ': 'Johnson & Johnson',
+  'MRK': 'Merck & Co. Inc.',
+  'ABBV': 'AbbVie Inc.',
+  'AMZN': 'Amazon.com Inc.',
+  'TSLA': 'Tesla Inc.',
+  'HD': 'Home Depot Inc.',
+  'MCD': 'McDonald\'s Corporation',
+  'NKE': 'Nike Inc.',
+  'WMT': 'Walmart Inc.',
+  'PG': 'Procter & Gamble Co.',
+  'KO': 'Coca-Cola Company',
+  'PEP': 'PepsiCo Inc.',
+  'COST': 'Costco Wholesale Corp.',
+  'GOOGL': 'Alphabet Inc.',
+  'META': 'Meta Platforms Inc.',
+  'NFLX': 'Netflix Inc.',
+  'DIS': 'Walt Disney Company',
+  'CMCSA': 'Comcast Corporation',
+  'XOM': 'Exxon Mobil Corp.',
+  'CVX': 'Chevron Corporation',
+  'COP': 'ConocoPhillips',
+  'SLB': 'Schlumberger N.V.',
+  'GE': 'General Electric Co.',
+  'CAT': 'Caterpillar Inc.',
+  'HON': 'Honeywell International',
+  'UNP': 'Union Pacific Corp.',
+  'LMT': 'Lockheed Martin Corp.',
+  'NEE': 'NextEra Energy Inc.',
+  'DUK': 'Duke Energy Corp.',
+  'SO': 'Southern Company',
+  'LIN': 'Linde plc',
+  'SHW': 'Sherwin-Williams Co.',
+  'APD': 'Air Products & Chemicals',
+  'PLD': 'Prologis Inc.',
+  'AMT': 'American Tower Corp.',
+  'CCI': 'Crown Castle Inc.',
 
-  // Financials
-  { symbol: 'JPM', name: 'JPMorgan Chase & Co.', price: 198.50, changePercent: 0.85, change: 1.67, marketCap: 572000000000, volume: 9500000 },
-  { symbol: 'BAC', name: 'Bank of America Corp.', price: 39.20, changePercent: -0.40, change: -0.16, marketCap: 310000000000, volume: 38000000 },
-  { symbol: 'MS', name: 'Morgan Stanley', price: 92.80, changePercent: 0.10, change: 0.09, marketCap: 152000000000, volume: 7000000 },
-  { symbol: 'GS', name: 'Goldman Sachs Group Inc.', price: 450.75, changePercent: 1.25, change: 5.56, marketCap: 148000000000, volume: 2800000 },
-  { symbol: 'V', name: 'Visa Inc.', price: 275.20, changePercent: -0.20, change: -0.55, marketCap: 565000000000, volume: 5500000 },
-  { symbol: 'MA', name: 'Mastercard Inc.', price: 455.60, changePercent: 0.45, change: 2.04, marketCap: 425000000000, volume: 3200000 },
+  // Dow Jones Additional
+  'CRM': 'Salesforce Inc.',
+  'CSCO': 'Cisco Systems Inc.',
+  'IBM': 'International Business Machines',
+  'INTC': 'Intel Corporation',
+  'AXP': 'American Express Co.',
+  'TRV': 'Travelers Companies Inc.',
+  'AMGN': 'Amgen Inc.',
+  'BA': 'Boeing Co.',
+  'MMM': '3M Company',
+  'VZ': 'Verizon Communications',
 
-  // Healthcare
-  { symbol: 'LLY', name: 'Eli Lilly and Company', price: 820.30, changePercent: 3.20, change: 25.40, marketCap: 780000000000, volume: 3500000 },
-  { symbol: 'UNH', name: 'UnitedHealth Group Inc.', price: 495.10, changePercent: -1.85, change: -9.32, marketCap: 458000000000, volume: 4200000 },
-  { symbol: 'JNJ', name: 'Johnson & Johnson', price: 155.40, changePercent: -0.30, change: -0.47, marketCap: 374000000000, volume: 7500000 },
-  { symbol: 'MRK', name: 'Merck & Co. Inc.', price: 128.25, changePercent: 0.65, change: 0.83, marketCap: 325000000000, volume: 6200000 },
-  { symbol: 'ABBV', name: 'AbbVie Inc.', price: 168.90, changePercent: 0.90, change: 1.51, marketCap: 298000000000, volume: 5100000 },
+  // Nasdaq Additional
+  'ADBE': 'Adobe Inc.',
+  'AMD': 'Advanced Micro Devices',
+  'QCOM': 'QUALCOMM Inc.',
+  'TXN': 'Texas Instruments',
+  'INTU': 'Intuit Inc.',
+  'ASML': 'ASML Holding',
+  'AMAT': 'Applied Materials',
+  'LRCX': 'Lam Research',
+  'PANW': 'Palo Alto Networks',
+  'SBUX': 'Starbucks Corp.',
+  'MELI': 'MercadoLibre Inc.',
+  'ORLY': 'O\'Reilly Automotive',
+  'LULU': 'Lululemon Athletica',
+  'MAR': 'Marriott International',
+  'PDD': 'PDD Holdings',
+  'MDLZ': 'Mondelez International',
+  'KDP': 'Keurig Dr Pepper',
+  'MNST': 'Monster Beverage',
+  'ISRG': 'Intuitive Surgical',
+  'REGN': 'Regeneron Pharmaceuticals',
+  'VRTX': 'Vertex Pharmaceuticals',
+  'GILD': 'Gilead Sciences',
+  'CSX': 'CSX Corp.',
+  'ODFL': 'Old Dominion Freight Line',
+  'FAST': 'Fastenal Co.',
+  'ADP': 'Automatic Data Processing',
+  'CEG': 'Constellation Energy',
+  'XEL': 'Xcel Energy Inc.',
 
-  // Consumer Discretionary
-  { symbol: 'AMZN', name: 'Amazon.com Inc.', price: 182.15, changePercent: 1.95, change: 3.49, marketCap: 1890000000000, volume: 32000000 },
-  { symbol: 'TSLA', name: 'Tesla Inc.', price: 178.20, changePercent: -3.40, change: -6.27, marketCap: 568000000000, volume: 85000000 },
-  { symbol: 'HD', name: 'Home Depot Inc.', price: 345.50, changePercent: 0.50, change: 1.72, marketCap: 342000000000, volume: 4500000 },
-  { symbol: 'MCD', name: 'McDonald\'s Corporation', price: 265.80, changePercent: -0.80, change: -2.14, marketCap: 192000000000, volume: 3800000 },
-  { symbol: 'NKE', name: 'Nike Inc.', price: 92.40, changePercent: -1.20, change: -1.12, marketCap: 139000000000, volume: 6800000 },
+  // FTSE 100
+  'AZN.L': 'AstraZeneca plc',
+  'GSK.L': 'GSK plc',
+  'HIK.L': 'Hikma Pharmaceuticals',
+  'HSBA.L': 'HSBC Holdings plc',
+  'BARC.L': 'Barclays plc',
+  'LLOY.L': 'Lloyds Banking Group',
+  'STAN.L': 'Standard Chartered plc',
+  'PRU.L': 'Prudential plc',
+  'LGEN.L': 'Legal & General Group',
+  'SHEL.L': 'Shell plc',
+  'BP.L': 'BP plc',
+  'ULVR.L': 'Unilever plc',
+  'DGE.L': 'Diageo plc',
+  'BATS.L': 'British American Tobacco',
+  'IMB.L': 'Imperial Brands plc',
+  'TSCO.L': 'Tesco plc',
+  'SBRY.L': 'Sainsbury\'s',
+  'RIO.L': 'Rio Tinto Group',
+  'AAL.L': 'Anglo American plc',
+  'GLEN.L': 'Glencore plc',
+  'ANTO.L': 'Antofagasta plc',
+  'RR.L': 'Rolls-Royce Holdings',
+  'REL.L': 'RELX plc',
+  'BA.L': 'BAE Systems plc',
+  'IAG.L': 'International Airlines Group',
+  'VOD.L': 'Vodafone Group plc',
+  'BT-A.L': 'BT Group plc',
+  'NG.L': 'National Grid plc',
+  'UU.L': 'United Utilities Group',
+  'SVT.L': 'Severn Trent plc',
+  'LAND.L': 'Land Securities Group',
+  'UTG.L': 'Unite Group plc',
+  'FLTR.L': 'Flutter Entertainment',
+  'IHG.L': 'InterContinental Hotels Group',
+  'NEXT.L': 'Next plc'
+};
 
-  // Consumer Staples
-  { symbol: 'WMT', name: 'Walmart Inc.', price: 65.20, changePercent: 0.75, change: 0.49, marketCap: 524000000000, volume: 15000000 },
-  { symbol: 'PG', name: 'Procter & Gamble Co.', price: 162.50, changePercent: -0.15, change: -0.24, marketCap: 382000000000, volume: 6100000 },
-  { symbol: 'KO', name: 'Coca-Cola Company', price: 62.10, changePercent: 0.25, change: 0.15, marketCap: 268000000000, volume: 11000000 },
-  { symbol: 'PEP', name: 'PepsiCo Inc.', price: 170.80, changePercent: 0.40, change: 0.68, marketCap: 234000000000, volume: 4500000 },
-  { symbol: 'COST', name: 'Costco Wholesale Corp.', price: 785.40, changePercent: 1.10, change: 8.54, marketCap: 348000000000, volume: 2100000 },
+// Generates realistic mock stock objects for fallback and offline use
+export const generateMockStocks = (tickers) => {
+  return tickers.map(ticker => {
+    // Deterministic random seed based on ticker symbol
+    let seed = 0;
+    for (let i = 0; i < ticker.length; i++) {
+      seed += ticker.charCodeAt(i);
+    }
+    
+    // Scale properties appropriately (FTSE 100 values in GBp pence, others in USD)
+    const isUK = ticker.includes('.L');
+    const priceBase = isUK ? 150 : 25;
+    const price = priceBase + (seed % 650) + Math.random() * 5;
+    
+    // Day net changes
+    const changePercent = -4.0 + (seed % 8) + Math.random() * 1.5;
+    const change = price * (changePercent / 100);
+    
+    // Market Cap base estimation (UK in GBP, US in USD)
+    const mcBase = isUK ? 3e9 : 8e9;
+    const marketCap = mcBase * (5 + (seed % 145));
+    
+    const volume = 1e5 * (2 + (seed % 35)) * 4;
+    
+    const name = TICKER_NAME_MAP[ticker] || (ticker + ' Corporation');
+    
+    return {
+      symbol: ticker,
+      name: name,
+      price: parseFloat(price.toFixed(2)),
+      changePercent: parseFloat(changePercent.toFixed(2)),
+      change: parseFloat(change.toFixed(2)),
+      marketCap: Math.round(marketCap),
+      volume: Math.round(volume),
+      high: parseFloat((price * 1.02).toFixed(2)),
+      low: parseFloat((price * 0.98).toFixed(2)),
+      open: parseFloat((price - change).toFixed(2)),
+      prevClose: parseFloat((price - change).toFixed(2))
+    };
+  });
+};
 
-  // Communication Services
-  { symbol: 'GOOGL', name: 'Alphabet Inc.', price: 175.50, changePercent: 2.30, change: 3.95, marketCap: 2180000000000, volume: 25000000 },
-  { symbol: 'META', name: 'Meta Platforms Inc.', price: 475.20, changePercent: 3.10, change: 14.30, marketCap: 1210000000000, volume: 18000000 },
-  { symbol: 'NFLX', name: 'Netflix Inc.', price: 625.30, changePercent: -1.50, change: -9.52, marketCap: 270000000000, volume: 3900000 },
-  { symbol: 'DIS', name: 'Walt Disney Company', price: 102.40, changePercent: -0.60, change: -0.62, marketCap: 186000000000, volume: 7500000 },
-  { symbol: 'CMCSA', name: 'Comcast Corporation', price: 39.50, changePercent: -0.90, change: -0.36, marketCap: 154000000000, volume: 14000000 },
-
-  // Energy
-  { symbol: 'XOM', name: 'Exxon Mobil Corp.', price: 115.80, changePercent: -1.25, change: -1.47, marketCap: 462000000000, volume: 16000000 },
-  { symbol: 'CVX', name: 'Chevron Corporation', price: 155.20, changePercent: -0.95, change: -1.49, marketCap: 288000000000, volume: 7500000 },
-  { symbol: 'COP', name: 'ConocoPhillips', price: 118.40, changePercent: -1.50, change: -1.80, marketCap: 138000000000, volume: 5500000 },
-  { symbol: 'SLB', name: 'Schlumberger N.V.', price: 46.20, changePercent: -2.35, change: -1.11, marketCap: 65000000000, volume: 8800000 },
-
-  // Industrials
-  { symbol: 'GE', name: 'General Electric Co.', price: 165.40, changePercent: 1.80, change: 2.92, marketCap: 180000000000, volume: 5800000 },
-  { symbol: 'CAT', name: 'Caterpillar Inc.', price: 355.20, changePercent: 0.95, change: 3.35, marketCap: 176000000000, volume: 2500000 },
-  { symbol: 'HON', name: 'Honeywell International', price: 202.80, changePercent: -0.40, change: -0.81, marketCap: 131000000000, volume: 2900000 },
-  { symbol: 'UNP', name: 'Union Pacific Corp.', price: 232.10, changePercent: 0.35, change: 0.81, marketCap: 141000000000, volume: 2200000 },
-  { symbol: 'LMT', name: 'Lockheed Martin Corp.', price: 472.50, changePercent: -0.10, change: -0.47, marketCap: 114000000000, volume: 1100000 },
-
-  // Utilities
-  { symbol: 'NEE', name: 'NextEra Energy Inc.', price: 72.40, changePercent: 0.65, change: 0.47, marketCap: 148000000000, volume: 8500000 },
-  { symbol: 'DUK', name: 'Duke Energy Corp.', price: 101.50, changePercent: 0.30, change: 0.30, marketCap: 78000000000, volume: 3100000 },
-  { symbol: 'SO', name: 'Southern Company', price: 78.90, changePercent: -0.15, change: -0.12, marketCap: 86000000000, volume: 3800000 },
-
-  // Materials
-  { symbol: 'LIN', name: 'Linde plc', price: 440.20, changePercent: 0.55, change: 2.41, marketCap: 211000000000, volume: 1800000 },
-  { symbol: 'SHW', name: 'Sherwin-Williams Co.', price: 305.40, changePercent: -0.35, change: -1.07, marketCap: 78000000000, volume: 1500000 },
-  { symbol: 'APD', name: 'Air Products & Chemicals', price: 262.50, changePercent: 0.20, change: 0.52, marketCap: 58000000000, volume: 1200000 },
-
-  // Real Estate
-  { symbol: 'PLD', name: 'Prologis Inc.', price: 115.60, changePercent: -1.15, change: -1.35, marketCap: 107000000000, volume: 4200000 },
-  { symbol: 'AMT', name: 'American Tower Corp.', price: 192.40, changePercent: 0.25, change: 0.48, marketCap: 89000000000, volume: 2100000 },
-  { symbol: 'CCI', name: 'Crown Castle Inc.', price: 98.50, changePercent: -0.65, change: -0.65, marketCap: 42000000000, volume: 2500000 }
-];
+// Legacy fallback list kept for compatibility
+export const MOCK_STOCKS = generateMockStocks(INDEX_TICKERS['s&p']);

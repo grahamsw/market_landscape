@@ -4,7 +4,7 @@ import {
   Info, TrendingUp, TrendingDown, Layers, Map, Compass 
 } from 'lucide-react';
 import ThreeCanvas from './components/ThreeCanvas';
-import { SECTORS, TICKER_SECTOR_MAP, MOCK_STOCKS } from './utils/marketData';
+import { SECTORS, TICKER_SECTOR_MAP, getIndexTickers, generateMockStocks } from './utils/marketData';
 
 export default function App() {
   // Stock data states
@@ -16,6 +16,7 @@ export default function App() {
   const [countdown, setCountdown] = useState(60);
   
   // Mapping configuration states
+  const [selectedIndex, setSelectedIndex] = useState('s&p'); // 's&p', 'dow', 'nasdaq', or 'ftse'
   const [heightMetric, setHeightMetric] = useState('performance');
   const [areaMetric, setAreaMetric] = useState('marketCap');
   const [colorMetric, setColorMetric] = useState('performance');
@@ -30,10 +31,14 @@ export default function App() {
   const countdownIntervalRef = useRef(null);
 
   // Fetch stock data from our Express server proxy
-  const fetchStocks = async (forceMock = false) => {
+  const fetchStocks = async (forceMock = false, indexOverride = selectedIndex) => {
+    const index = indexOverride;
+    const tickers = getIndexTickers(index);
+
     if (forceMock) {
-      console.log('[App] Loading mock stock data due to user toggle...');
-      setStocks(MOCK_STOCKS);
+      console.log(`[App] Loading mock stock data for index ${index}...`);
+      const mockData = generateMockStocks(tickers);
+      setStocks(mockData);
       setIsLiveData(false);
       setLastUpdated(new Date().toLocaleTimeString());
       setLoading(false);
@@ -44,7 +49,7 @@ export default function App() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/stocks');
+      const response = await fetch(`/api/stocks?index=${index}`);
       const json = await response.json();
       
       if (json.success && json.data && json.data.length > 0) {
@@ -56,8 +61,8 @@ export default function App() {
       }
     } catch (err) {
       console.warn('[App] Server fetch failed, falling back to mock data:', err);
-      // Fail gracefully and use static mock data so the app always renders
-      setStocks(MOCK_STOCKS);
+      const mockData = generateMockStocks(tickers);
+      setStocks(mockData);
       setIsLiveData(false);
       setLastUpdated(new Date().toLocaleTimeString());
     } finally {
@@ -66,14 +71,15 @@ export default function App() {
     }
   };
 
-  // Initial load
+  // Reload stocks whenever the index selection changes
   useEffect(() => {
-    fetchStocks();
-  }, []);
+    fetchStocks(isLiveData === false, selectedIndex);
+    // Reset selected stock when switching indices
+    setSelectedStock(null);
+  }, [selectedIndex]);
 
   // Countdown & auto-refresh interval
   useEffect(() => {
-    // Clear old interval
     if (countdownIntervalRef.current) {
       clearInterval(countdownIntervalRef.current);
     }
@@ -81,7 +87,7 @@ export default function App() {
     countdownIntervalRef.current = setInterval(() => {
       setCountdown(prev => {
         if (prev <= 1) {
-          fetchStocks(isLiveData === false); // reload current data mode
+          fetchStocks(isLiveData === false, selectedIndex); // reload current data mode & index
           return 60;
         }
         return prev - 1;
@@ -89,12 +95,12 @@ export default function App() {
     }, 1000);
 
     return () => clearInterval(countdownIntervalRef.current);
-  }, [isLiveData]);
+  }, [isLiveData, selectedIndex]);
 
   // Handle live vs mock data manual toggle
   const toggleDataMode = () => {
     const nextMode = !isLiveData;
-    fetchStocks(!nextMode);
+    fetchStocks(!nextMode, selectedIndex);
   };
 
   // Group stocks by sector for listing statistics in sidebar
@@ -215,6 +221,20 @@ export default function App() {
           </h2>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
             
+             <div className="control-group">
+              <label className="control-label">Market Index</label>
+              <select 
+                className="custom-select" 
+                value={selectedIndex} 
+                onChange={(e) => setSelectedIndex(e.target.value)}
+              >
+                <option value="s&p">S&P 500 Select</option>
+                <option value="dow">Dow Jones 30</option>
+                <option value="nasdaq">Nasdaq 100 (Top)</option>
+                <option value="ftse">FTSE 100 (Top)</option>
+              </select>
+            </div>
+
             <div className="control-group">
               <label className="control-label">Layout Shape</label>
               <select 

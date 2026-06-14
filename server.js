@@ -13,39 +13,65 @@ const PORT = process.env.PORT || 5001;
 app.use(cors());
 app.use(express.json());
 
-// List of tickers across sectors
-const TICKERS = [
-  // Technology
-  'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ORCL',
-  // Financials
-  'JPM', 'BAC', 'MS', 'GS', 'V', 'MA',
-  // Healthcare
-  'LLY', 'UNH', 'JNJ', 'MRK', 'ABBV',
-  // Consumer Discretionary
-  'AMZN', 'TSLA', 'HD', 'MCD', 'NKE',
-  // Consumer Staples
-  'WMT', 'PG', 'KO', 'PEP', 'COST',
-  // Communication Services
-  'GOOGL', 'META', 'NFLX', 'DIS', 'CMCSA',
-  // Energy
-  'XOM', 'CVX', 'COP', 'SLB',
-  // Industrials
-  'GE', 'CAT', 'HON', 'UNP', 'LMT',
-  // Utilities
-  'NEE', 'DUK', 'SO',
-  // Materials
-  'LIN', 'SHW', 'APD',
-  // Real Estate
-  'PLD', 'AMT', 'CCI'
-];
+// Lists of tickers per market index
+const INDEX_TICKERS = {
+  's&p': [
+    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ORCL',
+    'JPM', 'BAC', 'MS', 'GS', 'V', 'MA',
+    'LLY', 'UNH', 'JNJ', 'MRK', 'ABBV',
+    'AMZN', 'TSLA', 'HD', 'MCD', 'NKE',
+    'WMT', 'PG', 'KO', 'PEP', 'COST',
+    'GOOGL', 'META', 'NFLX', 'DIS', 'CMCSA',
+    'XOM', 'CVX', 'COP', 'SLB',
+    'GE', 'CAT', 'HON', 'UNP', 'LMT',
+    'NEE', 'DUK', 'SO',
+    'LIN', 'SHW', 'APD',
+    'PLD', 'AMT', 'CCI'
+  ],
+  'dow': [
+    'AAPL', 'MSFT', 'NVDA', 'CRM', 'CSCO', 'IBM',
+    'AXP', 'GS', 'JPM', 'TRV', 'V',
+    'AMGN', 'JNJ', 'MRK', 'UNH',
+    'AMZN', 'HD', 'MCD', 'NKE',
+    'KO', 'PG', 'WMT',
+    'DIS', 'VZ',
+    'CVX',
+    'CAT', 'HON', 'BA', 'MMM',
+    'SHW'
+  ],
+  'nasdaq': [
+    'AAPL', 'MSFT', 'NVDA', 'AVGO', 'ADBE', 'AMD', 'QCOM', 'TXN', 'INTU', 'ASML', 'AMAT', 'LRCX', 'PANW',
+    'GOOGL', 'META', 'NFLX', 'CMCSA',
+    'AMZN', 'TSLA', 'COST', 'SBUX', 'MELI', 'ORLY', 'LULU', 'MAR', 'PDD',
+    'PEP', 'MDLZ', 'KDP', 'MNST',
+    'ISRG', 'REGN', 'VRTX', 'AMGN', 'GILD',
+    'HON', 'CSX', 'ODFL', 'FAST', 'ADP',
+    'CEG', 'XEL'
+  ],
+  'ftse': [
+    'AZN.L', 'GSK.L', 'HIK.L',
+    'HSBA.L', 'BARC.L', 'LLOY.L', 'STAN.L', 'PRU.L', 'LGEN.L',
+    'SHEL.L', 'BP.L',
+    'ULVR.L', 'DGE.L', 'BATS.L', 'IMB.L', 'TSCO.L', 'SBRY.L',
+    'RIO.L', 'AAL.L', 'GLEN.L', 'ANTO.L',
+    'RR.L', 'REL.L', 'BA.L', 'IAG.L',
+    'VOD.L', 'BT-A.L',
+    'NG.L', 'UU.L', 'SVT.L',
+    'LAND.L', 'UTG.L',
+    'FLTR.L', 'IHG.L', 'NEXT.L'
+  ]
+};
 
-// Endpoint to fetch stock quotes
+// Endpoint to fetch stock quotes for a specific index
 app.get('/api/stocks', async (req, res) => {
   try {
-    console.log(`[Server] Fetching quotes for ${TICKERS.length} tickers...`);
+    const indexKey = req.query.index || 's&p';
+    const tickers = INDEX_TICKERS[indexKey] || INDEX_TICKERS['s&p'];
     
-    // Fetch quotes in parallel
-    const quotes = await yahooFinance.quote(TICKERS, {}, { validateResult: false });
+    console.log(`[Server] Fetching quotes for ${tickers.length} tickers on index "${indexKey}"...`);
+    
+    // Fetch quotes in parallel from Yahoo Finance
+    const quotes = await yahooFinance.quote(tickers, {}, { validateResult: false });
     
     // Process and sanitize quotes
     const formattedStocks = quotes.map(quote => {
